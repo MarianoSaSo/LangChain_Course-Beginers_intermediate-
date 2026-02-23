@@ -1,0 +1,46 @@
+1. Crear el Entorno Virtual
+Es fundamental para no mezclar dependencias de otros proyectos.
+
+Abre una terminal en la carpeta raíz LangChain_Curso.
+# python -m venv venv
+Actívalo:
+
+# .\venv\Scripts\activate
+
+
+¿Qué es un Entorno Virtual (Virtual Environment)?
+Imagina que tu computadora es una cocina grande. Por defecto, tienes una "despensa global" (tu instalación de Python principal) donde guardas todas tus herramientas y condimentos.
+
+El problema es que, si mañana haces otro curso que usa una versión vieja de LangChain, y el curso de hoy usa la versión más nueva, intentar tener ambas en la misma "despensa" causaría un conflicto: una borraría a la otra y tus programas dejarían de funcionar.
+
+Un Entorno Virtual (venv) es como crear una "cocina miniatura" privada dentro de la carpeta de tu proyecto.
+
+¿Para qué sirve exactamente?
+Aislamiento (Isolation): Todo lo que instales (como LangChain, OpenAI, etc.) se queda solo dentro de esa carpeta venv. No afecta al resto de tu computadora ni a otros proyectos.
+Limpieza: Si algo sale mal o quieres borrar el proyecto, simplemente borras la carpeta y tu computadora queda impecable, sin "basura" de librerías que ya no usas.
+Orden: Te permite saber exactamente qué librerías necesita este curso específicamente.
+¿Qué pasó cuando ejecutaste los comandos?
+python -m venv venv: Le dijiste a Python: "Crea una carpeta llamada 'venv' y mete ahí una copia limpia de Python y las herramientas básicas de instalación". Si miras en tu explorador de archivos, verás que ahora existe esa carpeta.
+.\venv\Scripts\activate
+: Le dijiste a tu terminal: "A partir de ahora, cuando yo escriba 'python' o 'pip', no uses los globales de la computadora; usa los que están dentro de mi carpeta venv".
+¿Cómo sabes que está funcionando? En tu terminal deberías ver el texto (venv) a la izquierda de la ruta. Eso significa que estás "dentro" de tu cocina privada.
+
+¿Te hace sentido esta explicación o hay alguna parte que te genere duda? Si estás listo, el siguiente paso sería crear el archivo requirements.txt para instalar las librerías.
+
+
+1. INSTALAR LangChain Y conectores para OpenAI y Anthropic
+
+pip install -U langchain
+
+pip install -U langchain-openai
+
+pip install -U langchain-anthropic
+
+pip install langchain-core
+
+2. INSTALAR libreria para leer el archivo .env 
+
+pip install python-dotenv
+
+3. FastApi
+pip install fastapi uvicorn
