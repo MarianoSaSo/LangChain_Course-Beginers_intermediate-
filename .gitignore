@@ -1,0 +1,19 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Variables de entorno (¡MUY IMPORTANTE NOTA SUBIR!)
+.env
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+
+# Documentos del curso (opcional, si no quieres subir los PDFs pesados)
+# *.pdf
