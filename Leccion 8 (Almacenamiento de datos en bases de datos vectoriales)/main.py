@@ -13,6 +13,11 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pinecone import Pinecone, ServerlessSpec
 
+# --- 1. NUEVAS IMPORTACIONES PARA LA API ---
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import uvicorn
+
 # 1. CONFIGURACIÓN DEL ENTORNO
 load_dotenv(find_dotenv())
 
@@ -62,6 +67,7 @@ print(f"--- 2. SUBIENDO VECTORES A PINECONE ---")
 embedded_chunks = embeddings_model.embed_documents(chunks)
 
 # Preparamos el formato que requiere Pinecone: (id, vector, metadata)
+# (List Comprehension)[ <lo que quiero meter> for <el elemento> in <la lista> ].Suele ser mas rapido que un bucle tradiocional.
 vectors_to_upsert = [
     {
         "id": f"chunk_{i}",
@@ -110,3 +116,32 @@ pregunta = "¿De qué ciudad es la empresa mencionada en la carta?"
 print(f"PREGUNTA: {pregunta}")
 resultado = responder_con_contexto(pregunta)
 print(f"RESPUESTA FINAL:\n{resultado}")
+
+
+# --- 3. CONFIGURACIÓN DE FASTAPI ---
+app = FastAPI(title="LangChain Pinecone RAG API")
+
+class ConsultaRequest(BaseModel):
+    pregunta: str
+
+
+# Endpoint para probar con Postman
+@app.get("/")
+def home():
+    return {"mensaje": "API de RAG con Pinecone activa. Usa /preguntar"}
+@app.post("/preguntar")
+async def preguntar(request: ConsultaRequest):
+    try:
+        resultado = responder_con_contexto(request.pregunta)
+        return {
+            "pregunta": request.pregunta,
+            "respuesta": resultado
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+# 7. EJECUCIÓN DEL SERVIDOR
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+#EJECTUAR EN TERMINAL:
+# uvicorn main:app --reload --port 8001 --app-dir "Leccion 8 (Almacenamiento de datos en bases de datos vectoriales)"
