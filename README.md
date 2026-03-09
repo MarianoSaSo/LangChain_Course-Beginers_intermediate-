@@ -1,45 +1,95 @@
-# 🚀 Proyectos Finales: Curso de LangChain (Agentes Inteligentes)
+# 🦜 Curso Completo de LangChain: De Principiante a Experto (Agentes Inteligentes)
 
-Este repositorio contiene la culminación del curso de LangChain, donde se aplican todos los conceptos aprendidos (RAG, Memoria, Herramientas y Razonamiento) en dos casos de uso de nivel profesional.
+¡Bienvenido al curso de LangChain! Este repositorio contiene todo el material necesario para aprender a construir aplicaciones de IA de última generación, utilizando modelos de lenguaje (LLMs), bases de datos vectoriales, memoria y agentes autónomos.
 
----
-
-## 🛠️ Proyecto Final 1: Agente Híbrido con RAG (Pinecone) y Wikipedia
-**Ubicación:** `Leccion 22 (Proyecto Agente 1)/`
-
-Un agente capaz de actuar como el "cerebro" de una organización, decidiendo inteligentemente entre diferentes fuentes de información.
-
-### Características Clave:
-*   **RAG con Pinecone:** Conecta con una base de datos vectorial que contiene el PDF de "Historia de España".
-*   **Razonamiento Crítico:** El agente evalúa si la respuesta está en los documentos internos o si debe buscar en Wikipedia.
-*   **Memoria de Conversación:** Utiliza `ConversationBufferMemory` para mantener el hilo de preguntas complejas y recordatorios históricos.
-*   **Personalización de Herramientas:** Definición de una `Custom Tool` con descripciones de "autoridad" para priorizar fuentes oficiales.
+Este curso está diseñado para llevarte paso a paso, desde los conceptos más básicos hasta la implementación de proyectos profesionales complejos.
 
 ---
 
-## 📊 Proyecto Final 2: Agente SQL - Análisis de Datos en Lenguaje Natural
-**Ubicación:** `Leccion 23 (Proyecto Agente 2)/`
+## 📚 Estructura del Curso
 
-La eliminación de la barrera técnica entre el usuario y las bases de datos relacionales (MySQL).
+El curso se divide en lecciones prácticas que cubren todo el ecosistema de LangChain:
 
-### Características Clave:
-*   **Traducción Text-to-SQL:** El agente traduce peticiones en español (ej: "Dime el promedio de esperanza de vida") a queries SQL complejas de forma autónoma.
-*   **Schema Awareness:** Capacidad del agente para explorar la estructura de las tablas (`world` database) antes de ejecutar consultas.
-*   **Seguridad y Mejores Prácticas:** Implementación de carga de contraseñas mediante archivos externos (`password_sql.txt`) para evitar exposición de credenciales.
-*   **Integración MySQL:** Conexión robusta mediante `SQLAlchemy` y `mysql-connector-python`.
+### 🛠️ Fundamentos y Estructura
+- **Lección 1**: Modelos de entrada y salida (System vs Human Messages).
+- **Lección 2**: Plantillas de Prompts (`ChatPromptTemplate`).
+- **Lección 3**: Output Parsers (Procesamiento de respuestas).
+
+### 📄 Gestión de Documentos y RAG
+- **Lección 4 y 5**: Cargadores de datos y documentos externos.
+- **Lección 6**: Transformación de documentos (Chunking/Text Splitting).
+- **Lección 7**: Creación de Embeddings (Representación vectorial).
+- **Lección 8**: Almacenamiento en Bases de Datos Vectoriales (Pinecone/VectorStores).
+- **Lección 9**: Integración completa: Almacenamiento + Chat + Memoria.
+
+### 🧠 Memoria de Conversación
+- **Lección 10**: `ChatMessageHistory`.
+- **Lección 11**: `ConversationBufferMemory`.
+- **Lección 12**: `ConversationBufferWindowMemory` (Memoria de ventana corta).
+- **Lección 14**: `ConversationSummaryBufferMemory` (Resumen inteligente de chats).
+
+### 🤖 Agentes y LCEL (Modern LangChain)
+- **Lección 15 a 18**: Introducción a Agentes (ReAct Pattern) y uso de herramientas.
+- **Lección 19**: **LCEL (LangChain Expression Language)** - El estándar moderno para encadenar componentes.
+- **Lección 20**: Agente con Memoria y despliegue con API (FastAPI).
+- **Lección 21**: Agente con Memoria Persistente (Pickle) y API.
 
 ---
 
-## 📝 Instrucciones de Instalación
-Para ejecutar estos proyectos, asegúrate de tener instaladas las dependencias necesarias:
+## 🏆 Proyectos Finales
+
+### 1. Agente Híbrido: RAG + Wikipedia (Lección 22)
+Un agente capaz de actuar como el "cerebro" de una organización. Decide inteligentemente si buscar en documentos internos (Pinecone) o en fuentes externas (Wikipedia).
+- **Tecnologías**: Pinecone, Wikipedia API, Custom Tooling, Memory.
+
+### 2. Agente SQL: Análisis de Datos (Lección 23)
+Elimina la barrera entre el lenguaje humano y las bases de datos relacionales. El agente traduce preguntas en español a consultas SQL reales.
+- **Tecnologías**: MySQL, SQLAlchemy, `create_sql_agent`, Schema Awareness.
+
+---
+
+## 🚀 Instalación y Configuración
+
+### 1. Clonar el repositorio
 ```bash
-pip install mysql-connector-python sqlalchemy pinecone-client langchain-openai
+git clone https://github.com/MarianoSaSo/LangChain_Course-Beginers_intermediate-
+cd LangChain_Curso
 ```
 
-## 🔐 Archivos de Configuración
-Asegúrate de tener en la raíz del proyecto:
-1. `.env`: Con tus API Keys (OpenAI y Pinecone).
-2. `password_sql.txt`: Con la contraseña de tu base de datos local (ej: `123456`).
+### 2. Crear entorno virtual
+```ps1
+# Crear entorno
+python -m venv venv
+
+# Activar entorno (Windows)
+.\venv\Scripts\activate
+```
+
+### 3. Instalar dependencias
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configuración de API Keys
+Crea un archivo `.env` en la raíz del proyecto con la siguiente estructura:
+```env
+OPENAI_API_KEY="tu_clave_de_openai"
+PINECONE_API_KEY="tu_clave_de_pinecone"
+LANGSMITH_API_KEY="tu_clave_de_langsmith" # Opcional
+```
+
+### 5. Configuración para el Agente SQL
+Para la Lección 23, asegúrate de tener:
+- Una instancia de MySQL local instalada.
+- El archivo `password_sql.txt` en la raíz con la contraseña de tu base de datos `root`.
 
 ---
-¡Gracias por completar este curso! Ahora tienes las herramientas para construir sistemas de IA autónomos y potentes.
+
+## 🔐 Seguridad y Mejores Prácticas
+
+**IMPORTANTE**: Este repositorio está configurado para ignorar archivos sensibles. Nunca compartas tus archivos `.env`, `password_sql.txt` o la carpeta `venv/`. Asegúrate de que el archivo `.gitignore` sea respetado antes de subir cambios a tu propio repositorio.
+
+---
+
+## ✨ Créditos
+Curso creado por **Mariano SaSo**. ¡Espero que disfrutes aprendiendo LangChain tanto como yo disfruté creando este material!
